@@ -6,7 +6,7 @@ export class MainMenu extends Component {
     constructor(props){
         super(props);
         this.state = {
-            jeniskelamin:this.props.route.params
+            jeniskelamin:this.props.route.params == 'male' ? 'male' : 'female'
         }
     }
     componentDidMount(){
@@ -17,10 +17,10 @@ export class MainMenu extends Component {
             <SafeAreaView style={styles.container}>
                 <Text style={styles.title}> Main Menu </Text>
                 <View style={styles.view}>
-                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.replace('Laporan') }}><Text style={styles.title1}>Data Calon</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.navigate('DataCalon', this.state.jeniskelamin) }}><Text style={styles.title1}>Data Calon</Text></TouchableOpacity>
                 </View>
                 <View style={styles.view}>
-                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.replace('Laporan') }}><Text style={styles.title1}>Pilih Calon</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.item} ><Text style={styles.title1}>Pilih Calon</Text></TouchableOpacity>
                 </View>
                 <View style={styles.view}>
                     <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.replace('Home') }}><Text style={styles.title1}>Keluar</Text></TouchableOpacity>

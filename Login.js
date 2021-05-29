@@ -15,7 +15,8 @@ export class Login extends Component {
         this.state = {
             username:'',
             nomorhp:'',
-            data:[]
+            data:[],
+            jeniskelamin:''
         }
     }
 
@@ -33,7 +34,7 @@ export class Login extends Component {
     }
 
     handleGetData(){
-        axios.get(`http://a613eae18cb9.ngrok.io/user/login/`,{
+        axios.get(`http://06ed236bd667.ngrok.io/user/login/`,{
             params:{
                 username:this.state.username,
                 nomorhp:this.state.nomorhp
@@ -41,7 +42,7 @@ export class Login extends Component {
         })
         .then((res)=>{
             // console.log('ini data axios.get' , res.data)
-            this.setState({data:res.data})
+            this.setState({data:res.data, jeniskelamin:res.data.jeniskelamin})
         })
     }
 
@@ -50,7 +51,7 @@ export class Login extends Component {
             alert('Email Dan Nomor Handphone Salah')
             
         }else if(this.state.data.username == this.state.username && this.state.data.nomorhp == this.state.nomorhp){
-            this.props.navigation.replace('MainMenu')
+            this.props.navigation.replace('MainMenu', this.state.jeniskelamin)
         }
     }
 

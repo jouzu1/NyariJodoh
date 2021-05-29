@@ -3,18 +3,27 @@ import { Text, SafeAreaView, View, FlatList, StyleSheet, StatusBar } from 'react
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export class MainMenu extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            jeniskelamin:this.props.route.params
+        }
+    }
+    componentDidMount(){
+        console.log('jenis kelamin' , this.state.jeniskelamin)
+    }
     render() {
         return (
             <SafeAreaView style={styles.container}>
                 <Text style={styles.title}> Main Menu </Text>
                 <View style={styles.view}>
-                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.navigate('Laporan') }}><Text style={styles.title1}>Data Calon</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.replace('Laporan') }}><Text style={styles.title1}>Data Calon</Text></TouchableOpacity>
                 </View>
                 <View style={styles.view}>
-                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.navigate('Laporan') }}><Text style={styles.title1}>Pilih Calon</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.replace('Laporan') }}><Text style={styles.title1}>Pilih Calon</Text></TouchableOpacity>
                 </View>
                 <View style={styles.view}>
-                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.navigate('Laporan') }}><Text style={styles.title1}>Keluar</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.replace('Home') }}><Text style={styles.title1}>Keluar</Text></TouchableOpacity>
                 </View>
             </SafeAreaView>
         )

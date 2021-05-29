@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 // import { Provider } from 'react-redux';
 import Home from './Home';
 import Register from './Register';
+import Login from './Login';
+import MainMenu from './MainMenu';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +17,8 @@ export default function App() {
     <Stack.Navigator >
       <Stack.Screen name="Home" component={Home} options={{ headerShown:false }}/>
       <Stack.Screen name="Register" component={Register} options={{ headerShown:false }}/>
+      <Stack.Screen name="Login" component={Login} options={{ headerShown:false }}/>
+      <Stack.Screen name="MainMenu" component={MainMenu} options={{ headerShown:false }}/>
     </Stack.Navigator>
   </NavigationContainer>
   );

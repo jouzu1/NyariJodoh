@@ -36,8 +36,8 @@ public class DataUserController {
 	}
 
 	@GetMapping("/login/")
-	public DataUser loginUser(@RequestParam("name")String name, @RequestParam("phone") String phone) {
-		return dataRepo.findByLogin(name, phone);
+	public DataUser loginUser(@RequestParam("username")String username, @RequestParam("nomorhp") String nomorhp) {
+		return dataRepo.findByLogin(username, nomorhp);
 	}
 
 

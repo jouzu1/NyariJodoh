@@ -20,8 +20,8 @@ public interface DataUserRepository extends JpaRepository<DataUser, Long>{
 //			+ "END)",nativeQuery=true)
 //	List<DataUser> findBySearchBy(@Param("type")String type,@Param("value")String value);
 
-	@Query(value="SELECT * from user where name=?1 and phone=?2",nativeQuery = true)
-	DataUser findByLogin(String name, String phone);
+	@Query(value="SELECT * from user where username=?1 and nomorhp=?2",nativeQuery = true)
+	DataUser findByLogin(String username, String nomorhp);
 	
 	DataUser findByName(String name); 
 }

@@ -72,13 +72,13 @@ export class DataCalon extends Component {
     )};
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <FlatList
                     data={this.state.data}
                     renderItem={this.renderItem}
                     keyExtractor={item => item.id}
                 />
-            </ScrollView>
+            </SafeAreaView>
         )
     }
 }

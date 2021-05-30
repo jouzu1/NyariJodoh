@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, Image, Button, TextInput, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, Image, Button, TextInput, ScrollView, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler'
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 
 export class DetailCalon extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: this.props,
-            image: this.props.route.params.image
+            image: this.props.route.params.image,
+            nama:this.props.route.params.name,
+            markers: [],
+            latitude: parseFloat(this.props.route.params.latitude),
+            longitude: parseFloat(this.props.route.params.longitude)
         }
     }
     componentDidMount() {
@@ -25,6 +31,42 @@ export class DetailCalon extends Component {
                         <Text>Username        : {this.state.data.route.params.username}</Text>
                         <Text>Nomor Handphone : {this.state.data.route.params.nomorhp}</Text>
                     </View>
+                    <MapView
+                    // showsUserLocation
+                    // initialRegion={{
+                    //     latitude: this.state.latitude,
+                    //     longitude: this.state.longitude,
+                    //     latitudeDelta: 10,
+                    //     longitudeDelta: 10
+                    // }}
+                    style={styles.map}
+                    showsUserLocation={true}
+                    zoomControlEnabled={true}
+                    zoomEnabled={true}
+                    zoomTapEnabled={true}
+                    showsScale={true}
+                    showsBuildings={true}
+                    showsUserLocation={true}
+                    showsCompass={true}
+                    region={{
+                        latitude: this.state.latitude,
+                        longitude: this.state.longitude,
+                        latitudeDelta: 0.001,
+                        longitudeDelta: 0.001
+                    }}
+                >
+                    <Marker
+                        coordinate={{
+                            latitude: this.state.latitude,
+                            longitude: this.state.longitude,
+                        }}
+                        title={this.state.nama}
+                        // description="Posisi Lokasi Anda"
+                        draggable
+                        pinColor="green"
+                    >
+                    </Marker>
+                </MapView>
                 </ScrollView>
             </SafeAreaView>
         )
@@ -32,6 +74,11 @@ export class DetailCalon extends Component {
 }
 
 const styles = StyleSheet.create({
+    map: {
+        width: Dimensions.get('window').width,
+        // height: Dimensions.get('window').height,
+        height: 400
+    },
     container: {
         flex: 1,
         // marginTop:40

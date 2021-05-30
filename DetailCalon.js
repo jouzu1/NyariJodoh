@@ -3,6 +3,7 @@ import { Text, View, SafeAreaView, StyleSheet, Image, Button, TextInput, ScrollV
 // import { TouchableOpacity } from 'react-native-gesture-handler'
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+import * as Linking from 'expo-linking';
 
 export class DetailCalon extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ export class DetailCalon extends Component {
         this.state = {
             data: this.props,
             image: this.props.route.params.image,
-            nama:this.props.route.params.name,
+            nama: this.props.route.params.name,
+            nomorhp: this.props.route.params.nomorhp,
             markers: [],
             latitude: parseFloat(this.props.route.params.latitude),
             longitude: parseFloat(this.props.route.params.longitude)
@@ -19,54 +21,66 @@ export class DetailCalon extends Component {
     componentDidMount() {
         console.log('ini data did mount', this.state.data)
     }
+
+    pressCall=()=>{
+        const url=`tel:${this.state.nomorhp}`
+        Linking.openURL(url)
+    }
     render() {
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView>
                     <Text style={{ fontSize: 24, fontWeight: 'bold', alignSelf: 'center', marginTop: 20 }}>Detail Calon</Text>
                     <Image source={{ uri: `http://06ed236bd667.ngrok.io/user/image/${this.state.image}` }} style={styles.image, { height: 400 }} />
-                    <View>
-                        <Text>Nama            : {this.state.data.route.params.name}</Text>
-                        <Text>Umur            : {this.state.data.route.params.umur}</Text>
-                        <Text>Username        : {this.state.data.route.params.username}</Text>
-                        <Text>Nomor Handphone : {this.state.data.route.params.nomorhp}</Text>
+                    <View style={{ flex:1}}>
+                        <View>
+                            <Text>Nama            : {this.state.data.route.params.name}</Text>
+                            <Text>Umur            : {this.state.data.route.params.umur}</Text>
+                            <Text>Username        : {this.state.data.route.params.username}</Text>
+                            <Text>Nomor Handphone : {this.state.nomorhp}</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => {this.pressCall()}}>
+                                <Image source={{uri : 'https://png.pngtree.com/png-vector/20201028/ourmid/pngtree-phone-icon-in-solid-circle-png-image_2380227.jpg'}} style={{width :50,height:50, alignSelf:'flex-end'}}/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     <MapView
-                    // showsUserLocation
-                    // initialRegion={{
-                    //     latitude: this.state.latitude,
-                    //     longitude: this.state.longitude,
-                    //     latitudeDelta: 10,
-                    //     longitudeDelta: 10
-                    // }}
-                    style={styles.map}
-                    showsUserLocation={true}
-                    zoomControlEnabled={true}
-                    zoomEnabled={true}
-                    zoomTapEnabled={true}
-                    showsScale={true}
-                    showsBuildings={true}
-                    showsUserLocation={true}
-                    showsCompass={true}
-                    region={{
-                        latitude: this.state.latitude,
-                        longitude: this.state.longitude,
-                        latitudeDelta: 0.001,
-                        longitudeDelta: 0.001
-                    }}
-                >
-                    <Marker
-                        coordinate={{
+                        // showsUserLocation
+                        // initialRegion={{
+                        //     latitude: this.state.latitude,
+                        //     longitude: this.state.longitude,
+                        //     latitudeDelta: 10,
+                        //     longitudeDelta: 10
+                        // }}
+                        style={styles.map}
+                        showsUserLocation={true}
+                        zoomControlEnabled={true}
+                        zoomEnabled={true}
+                        zoomTapEnabled={true}
+                        showsScale={true}
+                        showsBuildings={true}
+                        showsUserLocation={true}
+                        showsCompass={true}
+                        region={{
                             latitude: this.state.latitude,
                             longitude: this.state.longitude,
+                            latitudeDelta: 0.001,
+                            longitudeDelta: 0.001
                         }}
-                        title={this.state.nama}
-                        // description="Posisi Lokasi Anda"
-                        draggable
-                        pinColor="green"
                     >
-                    </Marker>
-                </MapView>
+                        <Marker
+                            coordinate={{
+                                latitude: this.state.latitude,
+                                longitude: this.state.longitude,
+                            }}
+                            title={this.state.nama}
+                            // description="Posisi Lokasi Anda"
+                            draggable
+                            pinColor="green"
+                        >
+                        </Marker>
+                    </MapView>
                 </ScrollView>
             </SafeAreaView>
         )

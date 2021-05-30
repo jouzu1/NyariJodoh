@@ -58,7 +58,9 @@ public class DataUserController {
 	@GetMapping(value = "/image/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public @ResponseBody byte[] getImageWithMediaType(@PathVariable String name) throws IOException {
 	   final InputStream in = getClass().getResourceAsStream("/user-photo/"+name);
+//	   System.out.printf("ini adalah input stream" , in.hashCode());
 	   return IOUtils.toByteArray(in);
+	   
 	}
 	
 	@PostMapping("/register")

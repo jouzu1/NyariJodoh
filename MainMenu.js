@@ -20,7 +20,7 @@ export class MainMenu extends Component {
                     <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.navigate('DataCalon', this.state.jeniskelamin) }}><Text style={styles.title1}>Data Calon</Text></TouchableOpacity>
                 </View>
                 <View style={styles.view}>
-                    <TouchableOpacity style={styles.item} ><Text style={styles.title1}>Pilih Calon</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.item} onPress={() => {this.props.navigation.navigate('PilihCalon')}}><Text style={styles.title1}>Pilih Calon</Text></TouchableOpacity>
                 </View>
                 <View style={styles.view}>
                     <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.replace('Home') }}><Text style={styles.title1}>Keluar</Text></TouchableOpacity>

@@ -10,6 +10,7 @@ import Login from './Login';
 import MainMenu from './MainMenu';
 import DataCalon from './DataCalon';
 import DetailCalon from './DetailCalon';
+import PilihCalon from './PilihCalon';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
       <Stack.Screen name="MainMenu" component={MainMenu} options={{ headerShown:false }}/>
       <Stack.Screen name="DataCalon" component={DataCalon}/>
       <Stack.Screen name="DetailCalon" component={DetailCalon} />
+      <Stack.Screen name="PilihCalon" component={PilihCalon} />
     </Stack.Navigator>
   </NavigationContainer>
   );
